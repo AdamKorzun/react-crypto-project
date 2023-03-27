@@ -1,0 +1,16 @@
+@import './variables';
+
+@mixin main-button() {
+  background-color: $primaryAccent;
+  border: none;
+  color: $secondaryText;
+  cursor: pointer;
+  &:hover {
+    background: darken($primaryAccent, 8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    transform: scale(1.05);
+    background: darken($primaryAccent, 15%);
+  }
+}
