@@ -1,0 +1,27 @@
+@import '../../../../styles/variables.scss';
+.content {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .inputContainer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    input {
+      height: 36px;
+      text-indent: 15px;
+      font-family: 'Roboto', sans-serif;
+      border-radius: 10px;
+      border: 1px solid $secondaryDecorations;
+
+      &:focus {
+        border: none;
+        outline: 2px solid $primaryAccent;
+      }
+    }
+  }
+}

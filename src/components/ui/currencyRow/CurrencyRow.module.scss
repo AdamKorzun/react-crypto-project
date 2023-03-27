@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+
+.row {
+  transition-duration: 200ms;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.01);
+  }
+  td {
+    text-align: center;
+    height: 64px;
+    padding: 24px 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    margin-bottom: 0.625em;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px $primaryDecorations;
+    margin: 40px 0;
+    background-color: $secondaryPureDecoratins;
+    padding: 20px;
+    td {
+      display: block;
+      height: 24px;
+      padding: 10px 0;
+      font-size: 0.8em;
+      text-align: right;
+
+      &::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+      }
+
+      &:last-child::before {
+        content: none;
+      }
+    }
+  }
+}
