@@ -1,20 +1,38 @@
 import React, { useState } from 'react';
 import type { ICurrency } from '../../../types/currency';
 import styles from './Header.module.scss';
+import { currencies as currenciesMockup } from '../../../data/currencies.mockup';
+import useModal from '../../../hooks/useModals';
+import ModalLayout from '../modals/Layout/ModalLayout';
+import PortfolioModal from '../modals/portfolio/Portfolio';
 const Header = (): JSX.Element => {
-  const [currencies]: [ICurrency[], any] = useState([]);
+  const [currencies]: [ICurrency[], any] = useState(
+    currenciesMockup.slice(0, 3),
+  );
+  const { isOpen, toggle } = useModal();
+
   return (
     <header className={styles.header}>
       <div className={styles.topCurrencies}>
         {currencies.map((currency) => {
-          return <div key={currency.id}> </div>;
+          return (
+            <div key={currency.id}>
+              <span>{currency.name}: </span>
+              <span>{currency.priceUSD}</span>
+            </div>
+          );
         })}
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
       </div>
-      <span className={styles.portfolio}>Portfolio</span>
-      <div>Current value</div>
+      <span onClick={toggle} className={styles.portfolio}>
+        Portfolio
+      </span>
+      <ModalLayout isOpen={isOpen} toggle={toggle}>
+        <PortfolioModal />
+      </ModalLayout>
+      <div>
+        <span>Current value: </span>
+        <span>0 (+0%)</span>
+      </div>
     </header>
   );
 };
