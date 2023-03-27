@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { currencies as currencyMockup } from '../../../data/currencies.mockup';
 import styles from './CurrenciesList.module.scss';
-import type { ICurreny } from '../../../types/currency';
+import type { ICurrency } from '../../../types/currency';
 import CurrencyRow from '../currencyRow/CurrencyRow';
 const CurrenciesList = (): JSX.Element => {
-  const [currencies]: [ICurreny[], any] = useState(currencyMockup);
+  const [currencies]: [ICurrency[], any] = useState(currencyMockup);
 
   return (
     <table className={styles.table}>

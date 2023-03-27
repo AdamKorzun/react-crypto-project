@@ -1,6 +1,6 @@
-import type { ICurreny } from '../types/currency';
+import type { ICurrency } from '../types/currency';
 
-export const currencies: ICurreny[] = [
+export const currencies: ICurrency[] = [
   {
     id: 1,
     name: 'mame',

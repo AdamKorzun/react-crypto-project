@@ -1,12 +1,12 @@
 import React from 'react';
 import useModal from '../../../hooks/useModals';
-import type { ICurreny } from '../../../types/currency';
+import type { ICurrency } from '../../../types/currency';
 import { Button } from '../buttons/Buttons';
 import AddCurrencyModal from '../modals/addCurrency/AddCurrency';
 import ModalLayout from '../modals/Layout/ModalLayout';
 import styles from './CurrencyRow.module.scss';
 
-const CurrencyRow = (props: { currency: ICurreny }): JSX.Element => {
+const CurrencyRow = (props: { currency: ICurrency }): JSX.Element => {
   const { isOpen, toggle } = useModal();
 
   function handleModalClose(amount: number): void {

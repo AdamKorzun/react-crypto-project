@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import type { ICurreny } from '../../../types/currency';
+import type { ICurrency } from '../../../types/currency';
 import styles from './Header.module.scss';
 const Header = (): JSX.Element => {
-  const [currencies]: [ICurreny[], any] = useState([]);
+  const [currencies]: [ICurrency[], any] = useState([]);
   return (
     <header className={styles.header}>
       <div className={styles.topCurrencies}>
