@@ -2,6 +2,14 @@
 .main {
   width: 90%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  .paginationWrapper {
+    width: 200px;
+  }
+  padding-bottom: 10px;
 }
 
 .title {
