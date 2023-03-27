@@ -1,6 +1,7 @@
 import React from 'react';
 import useModal from '../../../hooks/useModals';
 import type { ICurrency } from '../../../types/currency';
+import { prettyNumber } from '../../../utils/prettyNumbers';
 import { Button } from '../buttons/Buttons';
 import AddCurrencyModal from '../modals/addCurrency/AddCurrency';
 import ModalLayout from '../modals/Layout/ModalLayout';
@@ -25,17 +26,17 @@ const CurrencyRow = (props: { currency: ICurrency }): JSX.Element => {
           <span>{props.currency.symbol}</span>
         </td>
         <td data-label="price">
-          <span>{props.currency.priceUsd}</span>
+          <span>{prettyNumber(props.currency.priceUsd)}</span>
         </td>
         <td data-label="Supply">
-          <span>{props.currency.supply}</span>
+          <span>{prettyNumber(props.currency.supply)}</span>
         </td>
 
         <td data-label="Maket Cap">
-          <span>{props.currency.marketCapUsd}</span>
+          <span>{prettyNumber(props.currency.marketCapUsd)}</span>
         </td>
         <td data-label="Volume 24h">
-          <span>{props.currency.volumeUsd24Hr}</span>
+          <span>{prettyNumber(props.currency.volumeUsd24Hr)}</span>
         </td>
         <td>
           <Button text="Add" onClick={toggle} />

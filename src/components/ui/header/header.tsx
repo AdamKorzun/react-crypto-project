@@ -5,6 +5,7 @@ import { currencies as currenciesMockup } from '../../../data/currencies.mockup'
 import useModal from '../../../hooks/useModals';
 import ModalLayout from '../modals/Layout/ModalLayout';
 import PortfolioModal from '../modals/portfolio/Portfolio';
+import { prettyNumber } from '../../../utils/prettyNumbers';
 const Header = (): JSX.Element => {
   const [currencies]: [ICurrency[], any] = useState(
     currenciesMockup.slice(0, 3),
@@ -18,7 +19,7 @@ const Header = (): JSX.Element => {
           return (
             <div key={currency.id}>
               <span>{currency.symbol}: </span>
-              <span>{currency.priceUsd}</span>
+              <span>{prettyNumber(currency.priceUsd, 8)}</span>
             </div>
           );
         })}
