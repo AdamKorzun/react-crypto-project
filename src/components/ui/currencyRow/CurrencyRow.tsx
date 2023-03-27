@@ -6,16 +6,21 @@ import { Button } from '../buttons/Buttons';
 import AddCurrencyModal from '../modals/addCurrency/AddCurrency';
 import ModalLayout from '../modals/Layout/ModalLayout';
 import styles from './CurrencyRow.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const CurrencyRow = (props: { currency: ICurrency }): JSX.Element => {
   const { isOpen, toggle } = useModal();
+  const navigate = useNavigate();
+  function handleOnClick(): void {
+    navigate('/currency');
+  }
 
   function handleModalClose(amount: number): void {
     toggle();
   }
   return (
     <>
-      <tr className={styles.row}>
+      <tr className={styles.row} onClick={handleOnClick}>
         <td data-label="Rank">
           <span>{props.currency.rank}</span>
         </td>
