@@ -24,10 +24,16 @@ const CurrencyPage = (): JSX.Element => {
         </div>
         <div className={styles.currencyInfo}>
           <div className={styles.currencyDescription}>
-            <span className={styles.name}>{currency.name}</span>
-            <span>Price: {currency.priceUSD}</span>
-            <span>Market Cap: {currency.marketCap}</span>
-            <span>Volume (24hr): {currency.volume24h}</span>
+            <span className={styles.name}>
+              {currency.name} ({currency.symbol})
+            </span>
+            <span>Rank: {currency.rank}</span>
+            <span>Price: {currency.priceUsd}</span>
+            <span>Supply: {currency.supply}</span>
+            <span>Max Supply: {currency.maxSupply}</span>
+            <span>Market Cap: {currency.marketCapUsd}</span>
+            <span>Volume (24hr): {currency.volumeUsd24Hr}</span>
+            <span>Change (24hr): {currency.changePercent24Hr}</span>
           </div>
           <Button text="Add to portfolio" onClick={toggle} />
           <ModalLayout isOpen={isOpen} toggle={toggle}>

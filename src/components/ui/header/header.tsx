@@ -17,8 +17,8 @@ const Header = (): JSX.Element => {
         {currencies.map((currency) => {
           return (
             <div key={currency.id}>
-              <span>{currency.name}: </span>
-              <span>{currency.priceUSD}</span>
+              <span>{currency.symbol}: </span>
+              <span>{currency.priceUsd}</span>
             </div>
           );
         })}

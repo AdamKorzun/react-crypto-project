@@ -10,11 +10,11 @@ const CurrenciesList = (): JSX.Element => {
     <table className={styles.table}>
       <thead>
         <tr>
+          <th>Rank</th>
           <th>Name</th>
+          <th>Symbol</th>
           <th>Price</th>
-          <th>Change 1h</th>
-          <th>Change 24h</th>
-          <th>Change 7d</th>
+          <th>Supply</th>
           <th>Market Cap</th>
           <th>Volume 24h</th>
         </tr>

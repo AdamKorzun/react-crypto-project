@@ -1,10 +1,13 @@
 export interface ICurrency {
-  id: number;
+  id: string;
+  rank: number;
   name: string;
-  priceUSD: number;
-  change24h: string;
-  change1h: string;
-  change7d: string;
-  marketCap: number;
-  volume24h: number;
+  symbol: string;
+  supply: number;
+  maxSupply: number | null;
+  priceUsd: number;
+  vwap24Hr: number;
+  marketCapUsd: number;
+  volumeUsd24Hr: number;
+  changePercent24Hr: number;
 }

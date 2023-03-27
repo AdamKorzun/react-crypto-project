@@ -15,26 +15,27 @@ const CurrencyRow = (props: { currency: ICurrency }): JSX.Element => {
   return (
     <>
       <tr className={styles.row}>
-        <td data-label="name" className={styles.cell}>
+        <td data-label="Rank">
+          <span>{props.currency.rank}</span>
+        </td>
+        <td data-label="Name" className={styles.cell}>
           <span>{props.currency.name}</span>
         </td>
+        <td data-label="Symbol">
+          <span>{props.currency.symbol}</span>
+        </td>
         <td data-label="price">
-          <span>{props.currency.priceUSD}</span>
+          <span>{props.currency.priceUsd}</span>
         </td>
-        <td data-label="Change 1h">
-          <span>{props.currency.change1h}</span>
+        <td data-label="Supply">
+          <span>{props.currency.supply}</span>
         </td>
-        <td data-label="Change 24h">
-          <span>{props.currency.change24h}</span>
-        </td>
-        <td data-label="Change 7d">
-          <span>{props.currency.change7d}</span>
-        </td>
+
         <td data-label="Maket Cap">
-          <span>{props.currency.marketCap}</span>
+          <span>{props.currency.marketCapUsd}</span>
         </td>
         <td data-label="Volume 24h">
-          <span>{props.currency.volume24h}</span>
+          <span>{props.currency.volumeUsd24Hr}</span>
         </td>
         <td>
           <Button text="Add" onClick={toggle} />
