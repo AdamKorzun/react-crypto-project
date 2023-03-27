@@ -14,3 +14,10 @@
     background: darken($primaryAccent, 15%);
   }
 }
+
+@mixin card() {
+  border-radius: 20px;
+  background-color: $secondaryPureDecoratins;
+  border: 1px solid $primaryDecorations;
+  box-shadow: 3px 3px 3px $primaryDecorations;
+}
