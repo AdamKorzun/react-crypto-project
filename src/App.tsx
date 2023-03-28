@@ -16,7 +16,7 @@ function App(): JSX.Element {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="/currency" element={<CurrencyPage />} />
+        <Route path="/currency/:id" element={<CurrencyPage />} />
       </Route>,
     ),
   );
