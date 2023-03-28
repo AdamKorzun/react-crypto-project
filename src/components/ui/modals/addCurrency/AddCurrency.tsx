@@ -19,6 +19,7 @@ const AddCurrencyModal = (props: {
       <div className={styles.inputContainer}>
         <label htmlFor="">Amount</label>
         <input
+          className={styles.input}
           type="number"
           onChange={handleInput}
           placeholder="Amount"

@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+
 .main {
   width: 90%;
   margin: auto;
@@ -6,10 +7,11 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  .paginationWrapper {
-    width: 200px;
-  }
   padding-bottom: 10px;
+}
+
+.paginationWrapper {
+  width: 200px;
 }
 
 .title {
