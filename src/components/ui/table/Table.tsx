@@ -38,7 +38,9 @@ function objectKeys<T extends object>(obj: T): Array<keyof T> {
 }
 
 function prettyValue(input: PrimitiveType): string {
-  return typeof input === 'number' ? prettyNumber(input) : (input as string);
+  return !isNaN(Number(input))
+    ? prettyNumber(Number(input))
+    : (input as string);
 }
 
 const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
