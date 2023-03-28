@@ -1,28 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { ICurrency } from '../../../types/currency';
 import styles from './Header.module.scss';
-import { currencies as currenciesMockup } from '../../../data/currencies.mockup';
 import useModal from '../../../hooks/useModals';
 import ModalLayout from '../modals/Layout/ModalLayout';
 import PortfolioModal from '../modals/portfolio/Portfolio';
 import { prettyNumber } from '../../../utils/prettyNumbers';
+import { fetchCurrencies } from '../../../services/currency';
 const Header = (): JSX.Element => {
-  const [currencies]: [ICurrency[], any] = useState(
-    currenciesMockup.slice(0, 3),
-  );
+  const [currencies, setCurrencies]: [ICurrency[] | undefined, any] =
+    useState();
   const { isOpen, toggle } = useModal();
-
+  useEffect(() => {
+    fetchCurrencies(0, 3)
+      .then((fetchedCurrencies) => {
+        setCurrencies(fetchedCurrencies);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   return (
     <header className={styles.header}>
       <div className={styles.topCurrencies}>
-        {currencies.map((currency) => {
-          return (
-            <div key={currency.id}>
-              <span>{currency.symbol}: </span>
-              <span>{prettyNumber(currency.priceUsd, 8)}</span>
-            </div>
-          );
-        })}
+        {currencies !== undefined ? (
+          currencies.map((currency) => {
+            return (
+              <div key={currency.id}>
+                <span>{currency.symbol}: </span>
+                <span>{prettyNumber(Number(currency.priceUsd), 8)}</span>
+              </div>
+            );
+          })
+        ) : (
+          <></>
+        )}
       </div>
       <span onClick={toggle} className={styles.portfolio}>
         Portfolio

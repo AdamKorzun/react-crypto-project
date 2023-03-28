@@ -1,9 +1,12 @@
-export function prettyNumber(num: number, maxLength = 6): string {
+export function prettyNumber(
+  num: number | string | null,
+  maxLength = 6,
+): string {
   if (num === 0) {
     return '0';
   }
-  if (isNaN(num)) return '';
-  if (num === null) return '';
+  if (isNaN(Number(num)) || num === null) return num as string;
+  num = Number(num);
 
   let abs = Math.abs(num);
   const rounder = Math.pow(10, 1);

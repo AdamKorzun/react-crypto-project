@@ -11,7 +11,6 @@ import CurrencyPage from './pages/currency';
 import Home from './pages/Home';
 
 function App(): JSX.Element {
-  // temporaray router
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
@@ -20,6 +19,7 @@ function App(): JSX.Element {
       </Route>,
     ),
   );
+
   return (
     <>
       <Header />

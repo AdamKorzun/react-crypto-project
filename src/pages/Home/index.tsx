@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pagination from '../../components/ui/pagination/Pagination';
 import Table from '../../components/ui/table/Table';
 import styles from './Home.module.scss';
-import { currencies } from '../../data/currencies.mockup';
 import { Button } from '../../components/ui/buttons/Buttons';
 import useModal from '../../hooks/useModals';
 import ModalLayout from '../../components/ui/modals/Layout/ModalLayout';
 import AddCurrencyModal from '../../components/ui/modals/addCurrency/AddCurrency';
 import { useNavigate } from 'react-router-dom';
+import type { ICurrency } from '../../types/currency';
+import { fetchCurrencies } from '../../services/currency';
 const Home = (): JSX.Element => {
   const { isOpen, toggle } = useModal();
   const navigate = useNavigate();
   const [currencyName, setCurrencyName] = useState('');
+  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
 
   function handleRowClick(id: string): void {
     navigate(`/currency/${id}`);
@@ -25,6 +27,17 @@ const Home = (): JSX.Element => {
     toggle();
     setCurrencyName(name);
   }
+
+  useEffect(() => {
+    fetchCurrencies()
+      .then((currencies: ICurrency[]) => {
+        setCurrencies(currencies);
+      })
+      .catch((response) => {
+        console.error(response);
+      });
+  }, []);
+
   return (
     <>
       <main className={styles.main}>
@@ -33,15 +46,16 @@ const Home = (): JSX.Element => {
           headers={{
             id: 'Id',
             rank: 'Rank',
-            name: 'Name',
             symbol: 'Symbol',
+            name: 'Name',
+            priceUsd: 'Price',
             supply: 'Supply',
             maxSupply: 'Max Supply',
-            priceUsd: 'Price',
             vwap24Hr: 'VWAP 24h',
             marketCapUsd: 'Market Cap',
             volumeUsd24Hr: 'Volume 24h',
             changePercent24Hr: 'Change 24h',
+            explorer: 'Explorer',
             button: 'Add',
           }}
           items={currencies.map((currency) => {
@@ -58,6 +72,16 @@ const Home = (): JSX.Element => {
                   it.button.onClick(it.name);
                 }}
               />
+            ),
+            explorer: (it) => (
+              <a
+                href={it.explorer}
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
+                Explorer
+              </a>
             ),
           }}
         />
