@@ -49,7 +49,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
       <thead className={styles.tableHead}>
         <tr>
           {objectValues(props.headers).map((headerValue) => (
-            <th key={headerValue}>{headerValue as string}</th>
+            <th key={headerValue}>{String(headerValue)}</th>
           ))}
         </tr>
       </thead>

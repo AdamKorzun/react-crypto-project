@@ -10,8 +10,8 @@ import type { ICurrency, ICurrencyTimestamp } from '../../types/currency';
 import { useParams } from 'react-router-dom';
 import { prettyNumber } from '../../utils/prettyNumbers';
 const CurrencyPage = (): JSX.Element => {
-  const [currency, setCurrency]: [ICurrency | undefined, any] = useState();
-  const [chartData, setChartData]: [ICurrencyTimestamp[], any] = useState([]);
+  const [currency, setCurrency] = useState<ICurrency>();
+  const [chartData, setChartData] = useState<ICurrencyTimestamp[]>([]);
   const { isOpen, toggle } = useModal();
   const { id } = useParams();
 

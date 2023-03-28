@@ -28,7 +28,7 @@ const PriceChart = <T,>(props: {
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
         <XAxis
-          dataKey={props.xAxisLabel as string}
+          dataKey={String(props.xAxisLabel)}
           tickFormatter={(tick) => {
             return isValidTimestamp(tick)
               ? new Date(tick).toLocaleDateString()
@@ -40,7 +40,7 @@ const PriceChart = <T,>(props: {
         <Legend />
         <Line
           type="monotone"
-          dataKey={props.lineLabel as string}
+          dataKey={String(props.lineLabel)}
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />

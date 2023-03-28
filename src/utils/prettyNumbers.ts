@@ -5,7 +5,7 @@ export function prettyNumber(
   if (num === 0) {
     return '0';
   }
-  if (isNaN(Number(num)) || num === null) return num as string;
+  if (isNaN(Number(num)) || num === null) return String(num);
   num = Number(num);
 
   let abs = Math.abs(num);

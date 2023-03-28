@@ -4,8 +4,7 @@ import { portfolio as portfolioMockup } from '../../../../data/portfolio.mockup'
 import styles from './Portfolio.module.scss';
 import { Button } from '../../buttons/Buttons';
 const PortfolioModal = (): JSX.Element => {
-  const [portfolio, setPortfolio]: [IPortfolio, any] =
-    useState(portfolioMockup);
+  const [portfolio, setPortfolio] = useState<IPortfolio>(portfolioMockup);
 
   function removeAsset(asset: IPortfolioAsset): void {
     const updatedAssets = portfolio.assets.filter(

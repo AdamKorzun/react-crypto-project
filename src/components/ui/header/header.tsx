@@ -7,8 +7,7 @@ import PortfolioModal from '../modals/portfolio/Portfolio';
 import { prettyNumber } from '../../../utils/prettyNumbers';
 import { fetchCurrencies } from '../../../services/currency';
 const Header = (): JSX.Element => {
-  const [currencies, setCurrencies]: [ICurrency[] | undefined, any] =
-    useState();
+  const [currencies, setCurrencies] = useState<ICurrency[]>();
   const { isOpen, toggle } = useModal();
   useEffect(() => {
     fetchCurrencies(0, 3)
