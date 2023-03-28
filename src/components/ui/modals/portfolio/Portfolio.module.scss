@@ -3,24 +3,24 @@
   width: 300px;
   color: black;
   overflow-y: scroll;
+}
 
-  .table {
-    width: 100%;
+.table {
+  width: 100%;
+}
 
-    .tableHead {
-      font-weight: bold;
+.tableHead {
+  font-weight: bold;
+}
 
-      .removeButtonColumn {
-        width: 45px;
-      }
+.amountColumn {
+  text-align: center;
+}
 
-      .nameColumn {
-        width: 140px;
-      }
-    }
+.removeButtonColumn {
+  width: 45px;
+}
 
-    .amountColumn {
-      text-align: center;
-    }
-  }
+.nameColumn {
+  width: 140px;
 }
