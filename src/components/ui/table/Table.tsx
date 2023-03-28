@@ -62,7 +62,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
               props.onRowClick(row);
             }}
           >
-            {objectKeys(row).map((itemProperty, index) => {
+            {objectKeys(props.headers).map((itemProperty, index) => {
               const customRenderer = props.customRenderers?.[itemProperty];
               const dataLabel = objectValues(props.headers)[index];
               const key = rowIndex.toString() + index.toString();
