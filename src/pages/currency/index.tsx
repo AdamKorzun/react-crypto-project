@@ -9,23 +9,27 @@ import { fetchCrrency, fetchHistoricData } from '../../services/currency';
 import type { ICurrency, ICurrencyTimestamp } from '../../types/currency';
 import { useParams } from 'react-router-dom';
 import { prettyNumber } from '../../utils/prettyNumbers';
+import usePortfolio from '../../hooks/usePortfolio';
 const CurrencyPage = (): JSX.Element => {
   const [currency, setCurrency] = useState<ICurrency>();
   const [chartData, setChartData] = useState<ICurrencyTimestamp[]>([]);
   const { isOpen, toggle } = useModal();
   const { id } = useParams();
+  const [, addCurrency] = usePortfolio();
 
   useEffect(() => {
-    if (id === undefined) return;
+    if (typeof id === 'undefined') return;
     fetchCrrency(id).then(setCurrency).catch(console.error);
   }, []);
 
   useEffect(() => {
-    if (id === undefined) return;
+    if (typeof id === 'undefined') return;
     fetchHistoricData(id).then(setChartData).catch(console.error);
   }, [currency]);
 
   function handleModalClose(amount: number): void {
+    if (typeof currency === 'undefined') return;
+    addCurrency({ currency, amount });
     toggle();
   }
 

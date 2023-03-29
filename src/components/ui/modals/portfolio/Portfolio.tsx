@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
-import type { IPortfolio, IPortfolioAsset } from '../../../../types/portfolio';
-import { portfolio as portfolioMockup } from '../../../../data/portfolio.mockup';
+import React from 'react';
 import styles from './Portfolio.module.scss';
 import { Button } from '../../buttons/Buttons';
-const PortfolioModal = (): JSX.Element => {
-  const [portfolio, setPortfolio] = useState<IPortfolio>(portfolioMockup);
-
-  function removeAsset(asset: IPortfolioAsset): void {
-    const updatedAssets = portfolio.assets.filter(
-      (portfolioAsset) => portfolioAsset.currency.id !== asset.currency.id,
-    );
-    setPortfolio({ ...portfolio, assets: updatedAssets });
-  }
+import type { IPortfolioAsset } from '../../../../types/portfolio';
+import { prettyNumber } from '../../../../utils/prettyNumbers';
+const PortfolioModal = (props: {
+  portfolio: Record<string, IPortfolioAsset>;
+  onClick: (id: string) => void;
+}): JSX.Element => {
   return (
     <div className={styles.content}>
       <h2>Portfolio</h2>
@@ -24,15 +19,17 @@ const PortfolioModal = (): JSX.Element => {
           </tr>
         </thead>
         <tbody>
-          {portfolio.assets.map((asset): JSX.Element => {
+          {Object.keys(props.portfolio).map((key): JSX.Element => {
             return (
-              <tr key={asset.currency.id}>
-                <td>{asset.currency.name}</td>
-                <td className={styles.amountColumn}>{asset.amount}</td>
+              <tr key={key}>
+                <td>{props.portfolio[key].currency.name}</td>
+                <td className={styles.amountColumn}>
+                  {prettyNumber(props.portfolio[key].amount)}
+                </td>
                 <td>
                   <Button
                     onClick={() => {
-                      removeAsset(asset);
+                      props.onClick(key);
                     }}
                     text="-"
                   />

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import Pagination from '../../components/ui/pagination/Pagination';
 import Table from '../../components/ui/table/Table';
 import styles from './Home.module.scss';
 import { Button } from '../../components/ui/buttons/Buttons';
@@ -9,11 +8,14 @@ import AddCurrencyModal from '../../components/ui/modals/addCurrency/AddCurrency
 import { useNavigate } from 'react-router-dom';
 import type { ICurrency } from '../../types/currency';
 import { fetchCurrencies } from '../../services/currency';
+import usePortfolio from '../../hooks/usePortfolio';
 const Home = (): JSX.Element => {
   const { isOpen, toggle } = useModal();
   const navigate = useNavigate();
-  const [currencyName, setCurrencyName] = useState('');
+  const [currentCurrency, setCurrentCurrency] = useState<ICurrency>();
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
+  const [, addCurrency] = usePortfolio();
+  const [offset, setOffset] = useState(0);
 
   function handleRowClick(id: string): void {
     navigate(`/currency/${id}`);
@@ -21,14 +23,18 @@ const Home = (): JSX.Element => {
 
   const currenciesPerPage = 15;
 
-  const [offset, setOffset] = useState(0);
   function handleModalClose(amount: number): void {
+    if (typeof currentCurrency !== 'undefined')
+      addCurrency({ currency: currentCurrency, amount });
     toggle();
   }
 
-  function openModal(name: string): void {
+  function openModal(currencyId: string): void {
     toggle();
-    setCurrencyName(name);
+    if (currencies.length > 0) {
+      const currency = currencies.find((cur) => cur.id === currencyId);
+      setCurrentCurrency(currency);
+    }
   }
 
   function loadMoreCurrencies(): void {
@@ -77,7 +83,7 @@ const Home = (): JSX.Element => {
               <Button
                 text={it.button.text}
                 onClick={() => {
-                  it.button.onClick(it.name);
+                  it.button.onClick(it.id);
                 }}
               />
             ),
@@ -99,7 +105,9 @@ const Home = (): JSX.Element => {
         </div>
         <ModalLayout isOpen={isOpen} toggle={toggle}>
           <AddCurrencyModal
-            currencyName={currencyName}
+            currencyName={
+              typeof currentCurrency !== 'undefined' ? currentCurrency.name : ''
+            }
             handleClose={handleModalClose}
           />
         </ModalLayout>
