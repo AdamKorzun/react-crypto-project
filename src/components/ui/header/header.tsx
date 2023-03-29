@@ -14,9 +14,7 @@ const Header = (): JSX.Element => {
       .then((fetchedCurrencies) => {
         setCurrencies(fetchedCurrencies);
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(console.error);
   }, []);
   return (
     <header className={styles.header}>

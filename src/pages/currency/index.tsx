@@ -17,20 +17,12 @@ const CurrencyPage = (): JSX.Element => {
 
   useEffect(() => {
     if (id === undefined) return;
-    fetchCrrency(id)
-      .then(setCurrency)
-      .catch((error) => {
-        console.error(error);
-      });
+    fetchCrrency(id).then(setCurrency).catch(console.error);
   }, []);
 
   useEffect(() => {
     if (id === undefined) return;
-    fetchHistoricData(id)
-      .then(setChartData)
-      .catch((error) => {
-        console.error(error);
-      });
+    fetchHistoricData(id).then(setChartData).catch(console.error);
   }, [currency]);
 
   function handleModalClose(amount: number): void {
