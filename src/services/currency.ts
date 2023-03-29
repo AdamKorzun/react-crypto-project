@@ -34,3 +34,13 @@ export const fetchHistoricData = async (
   const data = await fetch(`${baseUrl}${id}/history?${params.toString()}`);
   return (await data.json()).data;
 };
+
+export const fetchSpecificCurrencies = async (
+  ids: string[],
+): Promise<ICurrency[]> => {
+  const params = new URLSearchParams({
+    ids: ids.join(','),
+  });
+  const data = await fetch(`${baseUrl}?${params.toString()}`);
+  return (await data.json()).data;
+};

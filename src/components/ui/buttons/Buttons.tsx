@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Buttons.module.scss';
 export const Button = (props: {
   text: string;
-  onClick?: (...args: any) => any;
+  onClick?: () => void;
 }): JSX.Element => {
   function handleClick(event: React.MouseEvent<HTMLButtonElement>): void {
     if (props.onClick != null) props.onClick();

@@ -10,15 +10,16 @@ import {
   YAxis,
 } from 'recharts';
 
-function isValidTimestamp(timestamp: any): boolean {
-  const newTimestamp = new Date(timestamp).getTime();
-  return !isNaN(Number(newTimestamp));
-}
 const PriceChart = <T,>(props: {
   data: T[];
   lineLabel: keyof T;
   xAxisLabel: keyof T;
 }): JSX.Element => {
+  function isValidTimestamp(timestamp: keyof T): boolean {
+    const newTimestamp = new Date(Number(timestamp)).getTime();
+    return !isNaN(Number(newTimestamp));
+  }
+
   return (
     <ResponsiveContainer width="95%" height="95%">
       <LineChart
