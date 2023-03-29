@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Pagination from '../../components/ui/pagination/Pagination';
+// import Pagination from '../../components/ui/pagination/Pagination';
 import Table from '../../components/ui/table/Table';
 import styles from './Home.module.scss';
 import { Button } from '../../components/ui/buttons/Buttons';
@@ -19,6 +19,9 @@ const Home = (): JSX.Element => {
     navigate(`/currency/${id}`);
   }
 
+  const currenciesPerPage = 15;
+
+  const [offset, setOffset] = useState(0);
   function handleModalClose(amount: number): void {
     toggle();
   }
@@ -28,11 +31,20 @@ const Home = (): JSX.Element => {
     setCurrencyName(name);
   }
 
-  useEffect(() => {
-    fetchCurrencies()
-      .then((currencies: ICurrency[]) => {
-        setCurrencies(currencies);
+  function loadMoreCurrencies(): void {
+    fetchCurrencies(offset + currenciesPerPage, currenciesPerPage)
+      .then((fetchedCurrencies) => {
+        setOffset(offset + currenciesPerPage);
+        setCurrencies([...currencies, ...fetchedCurrencies]);
       })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    fetchCurrencies(offset, currenciesPerPage)
+      .then(setCurrencies)
       .catch((response) => {
         console.error(response);
       });
@@ -86,7 +98,8 @@ const Home = (): JSX.Element => {
           }}
         />
         <div className={styles.paginationWrapper}>
-          <Pagination />
+          {/* <Pagination /> */}
+          <Button text="Load more" onClick={loadMoreCurrencies} />
         </div>
         <ModalLayout isOpen={isOpen} toggle={toggle}>
           <AddCurrencyModal

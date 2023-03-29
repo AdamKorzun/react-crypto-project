@@ -18,9 +18,7 @@ const CurrencyPage = (): JSX.Element => {
   useEffect(() => {
     if (id === undefined) return;
     fetchCrrency(id)
-      .then((currency) => {
-        setCurrency(currency);
-      })
+      .then(setCurrency)
       .catch((error) => {
         console.error(error);
       });
@@ -29,9 +27,7 @@ const CurrencyPage = (): JSX.Element => {
   useEffect(() => {
     if (id === undefined) return;
     fetchHistoricData(id)
-      .then((fetchedData) => {
-        setChartData(fetchedData);
-      })
+      .then(setChartData)
       .catch((error) => {
         console.error(error);
       });
