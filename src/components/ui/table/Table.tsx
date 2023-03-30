@@ -1,6 +1,7 @@
 import React from 'react';
-import { prettyNumber } from '../../../utils/prettyNumbers';
+import { prettifyNumber } from '../../../utils/prettifyNumbers';
 import styles from './Table.module.scss';
+
 type PrimitiveType = string | symbol | number | boolean;
 
 interface MinTableItem {
@@ -13,7 +14,7 @@ type CustomRenderers<T extends MinTableItem> = Partial<
   Record<keyof T, (it: T) => React.ReactNode>
 >;
 
-function isPrimitive(value: any): value is PrimitiveType {
+function isPrimitive(value: unknown): value is PrimitiveType {
   return (
     typeof value === 'string' ||
     typeof value === 'number' ||
@@ -29,17 +30,17 @@ interface TableProps<T extends MinTableItem> {
   customRenderers?: CustomRenderers<T>;
 }
 
-function objectValues<T extends object>(obj: T): Array<T[keyof T]> {
+function getObjectValues<T extends object>(obj: T): Array<T[keyof T]> {
   return Object.keys(obj).map((objKey) => obj[objKey as keyof T]);
 }
 
-function objectKeys<T extends object>(obj: T): Array<keyof T> {
+function getObjectKeys<T extends object>(obj: T): Array<keyof T> {
   return Object.keys(obj).map((objKey) => objKey as keyof T);
 }
 
-function prettyValue(input: PrimitiveType): string {
+function prettifyValue(input: PrimitiveType): string {
   return !isNaN(Number(input))
-    ? prettyNumber(Number(input))
+    ? prettifyNumber(Number(input))
     : (input as string);
 }
 
@@ -48,7 +49,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
     <table className={styles.table}>
       <thead className={styles.tableHead}>
         <tr>
-          {objectValues(props.headers).map((headerValue) => (
+          {getObjectValues(props.headers).map((headerValue) => (
             <th key={headerValue}>{String(headerValue)}</th>
           ))}
         </tr>
@@ -62,11 +63,11 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
               props.onRowClick(row);
             }}
           >
-            {objectKeys(props.headers).map((itemProperty, index) => {
+            {getObjectKeys(props.headers).map((itemProperty, index) => {
               const customRenderer = props.customRenderers?.[itemProperty];
-              const dataLabel = objectValues(props.headers)[index];
+              const dataLabel = getObjectValues(props.headers)[index];
               const key = rowIndex.toString() + index.toString();
-              if (customRenderer != null) {
+              if (typeof customRenderer !== 'undefined') {
                 return (
                   <td data-label={dataLabel} className={styles.cell} key={key}>
                     {customRenderer(row)}
@@ -76,7 +77,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
               return (
                 <td data-label={dataLabel} className={styles.cell} key={key}>
                   {isPrimitive(row[itemProperty])
-                    ? prettyValue(row[itemProperty] as PrimitiveType)
+                    ? prettifyValue(row[itemProperty] as PrimitiveType)
                     : '-'}
                 </td>
               );

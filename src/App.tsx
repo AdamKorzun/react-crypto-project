@@ -21,10 +21,10 @@ function App(): JSX.Element {
       </Route>,
     ),
   );
-  let storagePortfolio = JSON.parse(String(localStorage.getItem('portfolio')));
-  if (storagePortfolio == null) {
-    storagePortfolio = { assets: [], totalValue: 0 };
-  }
+  const storagePortfolio = JSON.parse(
+    String(localStorage.getItem('portfolio')),
+  ) ?? { assets: [], totalValue: 0 };
+
   const [portfolio, setPortfolio] = useState<IPortfolio>(storagePortfolio);
 
   return (

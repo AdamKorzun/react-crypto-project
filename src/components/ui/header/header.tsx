@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import useModal from '../../../hooks/useModals';
 import ModalLayout from '../modals/Layout/ModalLayout';
 import PortfolioModal from '../modals/portfolio/Portfolio';
-import { prettyNumber } from '../../../utils/prettyNumbers';
+import { prettifyNumber } from '../../../utils/prettifyNumbers';
 import {
   fetchCurrencies,
   fetchSpecificCurrencies,
@@ -35,14 +35,12 @@ const Header = (): JSX.Element => {
       const currency: ICurrency | undefined = currencies.find(
         (currency) => currency.id === asset.currency.id,
       );
-      if (typeof currency !== 'undefined') {
-        totalValue += Number(currency.priceUsd) * asset.amount;
-      }
+      totalValue += Number(currency?.priceUsd) * asset.amount;
     });
     return totalValue;
   }
 
-  function uniquePortfolio(
+  function getUniquePortfolio(
     portfolio: IPortfolio,
   ): Record<string, IPortfolioAsset> {
     const result: Record<string, IPortfolioAsset> = portfolio.assets.reduce(
@@ -65,18 +63,14 @@ const Header = (): JSX.Element => {
   return (
     <header className={styles.header}>
       <div className={styles.topCurrencies}>
-        {currencies !== undefined ? (
-          currencies.map((currency) => {
-            return (
-              <div key={currency.id}>
-                <span>{currency.symbol}: </span>
-                <span>{prettyNumber(Number(currency.priceUsd), 8)}</span>
-              </div>
-            );
-          })
-        ) : (
-          <></>
-        )}
+        {currencies?.map((currency) => {
+          return (
+            <div key={currency.id}>
+              <span>{currency.symbol}: </span>
+              <span>{prettifyNumber(Number(currency.priceUsd), 8)}</span>
+            </div>
+          );
+        })}
       </div>
 
       <svg
@@ -90,18 +84,18 @@ const Header = (): JSX.Element => {
       </svg>
       <ModalLayout isOpen={isOpen} toggle={toggle}>
         <PortfolioModal
-          portfolio={uniquePortfolio(portfolio)}
+          portfolio={getUniquePortfolio(portfolio)}
           onClick={removeAsset}
         />
       </ModalLayout>
       <div className={styles.portfolioValues}>
-        <span>Current value: {prettyNumber(portfolioValue)}</span>
+        <span>Current value: {prettifyNumber(portfolioValue)}</span>
         <span>
-          Change: {prettyNumber(portfolioValue)} (
-          {prettyNumber(
+          Change: {prettifyNumber(portfolioValue - portfolio.totalValue)} (
+          {prettifyNumber(
             (portfolioValue - portfolio.totalValue) / portfolioValue,
-          )}
-          )%
+          ) ?? 0}
+          %)
         </span>
       </div>
     </header>

@@ -1,11 +1,9 @@
-export function prettyNumber(
+export function prettifyNumber(
   num: number | string | null,
   maxLength = 6,
 ): string {
-  if (num === 0) {
-    return '0';
-  }
-  if (isNaN(Number(num)) || num === null) return String(num);
+  if (isNaN(num as number)) return '';
+  if (isNaN(Number(num))) return String(num);
   num = Number(num);
 
   let abs = Math.abs(num);

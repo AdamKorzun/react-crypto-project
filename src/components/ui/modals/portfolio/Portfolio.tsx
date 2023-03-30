@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Portfolio.module.scss';
 import { Button } from '../../buttons/Buttons';
 import type { IPortfolioAsset } from '../../../../types/portfolio';
-import { prettyNumber } from '../../../../utils/prettyNumbers';
+import { prettifyNumber } from '../../../../utils/prettifyNumbers';
 const PortfolioModal = (props: {
   portfolio: Record<string, IPortfolioAsset>;
   onClick: (id: string) => void;
@@ -24,7 +24,7 @@ const PortfolioModal = (props: {
               <tr key={key}>
                 <td>{props.portfolio[key].currency.name}</td>
                 <td className={styles.amountColumn}>
-                  {prettyNumber(props.portfolio[key].amount)}
+                  {prettifyNumber(props.portfolio[key].amount)}
                 </td>
                 <td>
                   <Button

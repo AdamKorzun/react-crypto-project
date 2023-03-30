@@ -20,6 +20,12 @@ const PriceChart = <T,>(props: {
     return !isNaN(Number(newTimestamp));
   }
 
+  function getDate(label: string): string {
+    return isValidTimestamp(label as keyof T)
+      ? new Date(label).toLocaleDateString()
+      : label;
+  }
+
   return (
     <ResponsiveContainer width="95%" height="95%">
       <LineChart
@@ -28,16 +34,9 @@ const PriceChart = <T,>(props: {
         data={props.data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
-        <XAxis
-          dataKey={String(props.xAxisLabel)}
-          tickFormatter={(tick) => {
-            return isValidTimestamp(tick)
-              ? new Date(tick).toLocaleDateString()
-              : tick;
-          }}
-        />
+        <XAxis dataKey={String(props.xAxisLabel)} tickFormatter={getDate} />
         <YAxis />
-        <Tooltip />
+        <Tooltip labelFormatter={getDate} />
         <Legend />
         <Line
           type="monotone"
