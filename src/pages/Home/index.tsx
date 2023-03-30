@@ -99,15 +99,10 @@ const Home = (): JSX.Element => {
             ),
           }}
         />
-        <div className={styles.paginationWrapper}>
-          {/* <Pagination /> */}
-          <Button text="Load more" onClick={loadMoreCurrencies} />
-        </div>
+        <Button text="Load more" onClick={loadMoreCurrencies} width="200px" />
         <ModalLayout isOpen={isOpen} toggle={toggle}>
           <AddCurrencyModal
-            currencyName={
-              typeof currentCurrency !== 'undefined' ? currentCurrency.name : ''
-            }
+            currencyName={currentCurrency?.name ?? ''}
             handleClose={handleModalClose}
           />
         </ModalLayout>

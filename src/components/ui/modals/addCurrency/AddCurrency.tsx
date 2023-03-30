@@ -1,37 +1,51 @@
 import React, { useState } from 'react';
-import type { ChangeEvent } from 'react';
 import { Button } from '../../buttons/Buttons';
 import styles from './AddCurrency.module.scss';
 const AddCurrencyModal = (props: {
   currencyName: string;
   handleClose: (amount: number) => void;
 }): JSX.Element => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
 
-  function handleInput(event: ChangeEvent<HTMLInputElement>): void {
-    const value = Number.parseFloat(event.target.value);
-    setAmount(Math.max(value, 0));
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    const result = event.target.value.replace(/[^\d.]/g, '');
+    if (Number(result) >= 0) {
+      setAmount(result);
+    }
+  }
+
+  function validateForm(amount: string): boolean {
+    return Number(amount) > 0;
+  }
+
+  function handleSubmit(event: React.SyntheticEvent): void {
+    event.preventDefault();
+    if (validateForm(amount)) {
+      props.handleClose(Number(amount));
+    }
   }
 
   return (
     <div className={styles.content}>
       <h2>Add {props.currencyName} to your portfolio</h2>
-      <div className={styles.inputContainer}>
-        <label htmlFor="">Amount</label>
+      <form className={styles.inputContainer} onSubmit={handleSubmit}>
+        <label htmlFor="amount">Amount</label>
         <input
+          autoComplete="off"
+          id="amount"
+          name="amount"
           className={styles.input}
-          type="number"
+          type="text"
           onChange={handleInput}
           placeholder="Amount"
           value={amount}
         />
-      </div>
-      <Button
-        text="Add to portfolio"
-        onClick={() => {
-          props.handleClose(amount);
-        }}
-      />
+        <Button
+          text="Add to portfolio"
+          type="submit"
+          disabled={!validateForm(amount)}
+        />
+      </form>
     </div>
   );
 };

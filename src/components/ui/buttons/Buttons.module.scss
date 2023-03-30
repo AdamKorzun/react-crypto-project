@@ -1,4 +1,5 @@
 @import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .button {
   @include main-button;
@@ -7,4 +8,13 @@
   height: 44px;
   border-radius: 12px;
   font-size: 1.5rem;
+}
+
+.button:disabled {
+  background-color: $secondaryDecorations;
+  cursor: auto;
+}
+
+.button:disabled:active {
+  transform: scale(1);
 }
