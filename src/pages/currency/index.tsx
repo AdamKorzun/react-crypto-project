@@ -7,7 +7,7 @@ import AddCurrencyModal from '../../components/ui/modals/addCurrency/AddCurrency
 import useModal from '../../hooks/useModals';
 import { fetchCrrency, fetchHistoricData } from '../../services/currency';
 import type { ICurrency, ICurrencyTimestamp } from '../../types/currency';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { prettifyNumber } from '../../utils/prettifyNumbers';
 import usePortfolio from '../../hooks/usePortfolio';
 const CurrencyPage = (): JSX.Element => {
@@ -16,10 +16,15 @@ const CurrencyPage = (): JSX.Element => {
   const { isOpen, toggle } = useModal();
   const { id } = useParams();
   const [, addCurrency] = usePortfolio();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (typeof id === 'undefined') return;
-    fetchCrrency(id).then(setCurrency).catch(console.error);
+    fetchCrrency(id)
+      .then(setCurrency)
+      .catch(() => {
+        navigate('/');
+      });
   }, []);
 
   useEffect(() => {
@@ -28,20 +33,23 @@ const CurrencyPage = (): JSX.Element => {
   }, [currency]);
 
   function handleModalClose(amount: number): void {
-    if (typeof currency === 'undefined') return;
+    if (!currency) return;
     addCurrency({ currency, amount });
     toggle();
   }
 
   return (
     <main className={styles.main}>
-      {typeof currency !== 'undefined' ? (
+      {currency ? (
         <>
           <div className={styles.chartWrapper}>
             <PriceChart
-              data={chartData}
-              lineLabel={'priceUsd' as keyof ICurrencyTimestamp}
-              xAxisLabel={'time' as keyof ICurrencyTimestamp}
+              data={chartData.map((x) => ({
+                priceUsd: Number(x.priceUsd),
+                time: x.time,
+              }))}
+              lineLabel={'priceUsd'}
+              xAxisLabel={'time'}
             />
           </div>
           <div className={styles.currencyInfo}>
