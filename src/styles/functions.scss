@@ -1,0 +1,15 @@
+@import './typography';
+
+@function fontSize($key: default) {
+  @if not map-has-key($fontSizes, $key) {
+    @warn "Color `#{$key}` not found.";
+  }
+  @return map-get($fontSizes, $key);
+}
+
+@function fontWeight($key: regular) {
+  @if not map-has-key($fontWeights, $key) {
+    @warn "Weight `#{$key}` not found.";
+  }
+  @return map-get($fontWeights, $key);
+}

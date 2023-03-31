@@ -25,7 +25,7 @@ const CurrencyPage = (): JSX.Element => {
       .catch(() => {
         navigate('/');
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (typeof id === 'undefined') return;

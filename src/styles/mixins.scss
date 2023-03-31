@@ -1,4 +1,4 @@
-@import './variables';
+@import './colors';
 
 @mixin main-button() {
   background-color: $primaryAccent;
@@ -20,4 +20,13 @@
   background-color: $secondaryPureDecoratins;
   border: 1px solid $primaryDecorations;
   box-shadow: 3px 3px 3px $primaryDecorations;
+}
+
+@mixin flexContainer($direction, $justify, $align, $gap: 0px, $flexGrow: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-grow: $flexGrow;
 }

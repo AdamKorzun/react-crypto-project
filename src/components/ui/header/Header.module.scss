@@ -1,47 +1,34 @@
-@import '../../../styles/variables';
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+@import '../../../styles/functions';
 
 .header {
+  @include flexContainer(row, space-around, center);
   width: 100%;
-  background-color: $primaryAccent;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   height: 54px;
+  background-color: $primaryAccent;
   color: $secondaryText;
 }
 
 .topCurrencies {
-  width: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-  flex-direction: column;
-  font-size: 12px;
+  @include flexContainer(column, space-between, left);
+  font-size: fontSize(xs);
   width: 140px;
 }
 
-.portfolio {
+.portfolio,
+.homeLink {
   width: 45px;
   height: 45px;
-  color: white;
   cursor: pointer;
 }
 
 .portfolioValues {
-  display: flex;
-  flex-direction: column;
+  @include flexContainer(column, left, left);
   width: 140px;
-  font-size: 12px;
-}
-
-.homeLink {
-  width: 45px;
-  height: 45px;
-  color: white;
-  cursor: pointer;
+  font-size: fontSize(xs);
 }
 
 .navigationMenu {
-  display: flex;
-  gap: 20px;
+  @include flexContainer(row, left, left, 20px);
 }

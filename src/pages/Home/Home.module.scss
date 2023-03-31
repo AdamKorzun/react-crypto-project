@@ -1,12 +1,10 @@
-@import '../../styles/variables.scss';
+@import '../../styles/colors';
+@import '../../styles/mixins';
 
 .main {
+  @include flexContainer(column, left, center, 10px);
   width: 90%;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
   padding-bottom: 10px;
 }
 

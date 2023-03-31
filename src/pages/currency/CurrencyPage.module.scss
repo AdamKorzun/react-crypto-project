@@ -1,49 +1,40 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../styles/functions';
 
 .main {
+  @include flexContainer(row, center, left, 30px);
   width: 90%;
-  margin: auto;
-  display: flex;
-  gap: 30px;
-  margin-top: 30px;
   height: 100%;
+  margin: 30px auto 0 auto;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .currencyInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  @include flexContainer(column, left, left, 20px);
 }
 
 .currencyDescription {
   @include card;
+  @include flexContainer(column, left, left, 10px, 1);
   padding: 10px;
-  min-width: 320px;
-  display: flex;
   width: 320px;
-  flex-direction: column;
-  gap: 10px;
-  flex-grow: 1;
 }
 
 .name {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: fontSize(l);
+  font-weight: fontWeight(bold);
 }
 
 .chartWrapper {
+  @include card;
+  @include flexContainer(row, center, center);
+
   height: 700px;
   padding: 10px;
   width: 50%;
   min-height: 320px;
   min-width: 320px;
-  @include card;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media screen and (max-width: 1300px) {

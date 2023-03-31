@@ -1,24 +1,19 @@
-@import '../../../../styles/variables.scss';
+@import '../../../../styles/colors';
+@import '../../../../styles/mixins';
 
 .content {
+  @include flexContainer(column, center, left, 10px);
   min-height: 200px;
   width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
 }
 
 .inputContainer {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
+  @include flexContainer(column, center, left, 10px);
 }
 
 .input {
   height: 36px;
   text-indent: 15px;
-  font-family: 'Roboto', sans-serif;
   border-radius: 10px;
   border: 1px solid $secondaryDecorations;
 

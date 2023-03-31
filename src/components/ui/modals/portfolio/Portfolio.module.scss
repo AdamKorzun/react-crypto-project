@@ -1,8 +1,16 @@
+@import '../../../../styles/colors';
+@import '../../../../styles/functions';
+
 .content {
   height: 500px;
   width: 300px;
-  color: black;
+  color: $primaryText;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .table {
@@ -10,7 +18,7 @@
 }
 
 .tableHead {
-  font-weight: bold;
+  font-weight: fontWeight(bold);
 }
 
 .amountColumn {
