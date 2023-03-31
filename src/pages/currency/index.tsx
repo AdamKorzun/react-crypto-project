@@ -29,7 +29,9 @@ const CurrencyPage = (): JSX.Element => {
 
   useEffect(() => {
     if (typeof id === 'undefined') return;
-    fetchHistoricData(id).then(setChartData).catch(console.error);
+    fetchHistoricData(id)
+      .then(setChartData)
+      .catch(() => {});
   }, [currency]);
 
   function handleModalClose(amount: number): void {

@@ -19,7 +19,9 @@ const Header = (): JSX.Element => {
   const [portfolioValue, setPortfolioValue] = useState(0);
 
   useEffect(() => {
-    fetchCurrencies(0, 3).then(setCurrencies).catch(console.error);
+    fetchCurrencies(0, 3)
+      .then(setCurrencies)
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Header = (): JSX.Element => {
       .then((cur) => {
         setPortfolioValue(getCurrentPortfolioValue(cur));
       })
-      .catch(console.error);
+      .catch(() => {});
   }, [portfolio]);
 
   function getCurrentPortfolioValue(currencies: ICurrency[]): number {

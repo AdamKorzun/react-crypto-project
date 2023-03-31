@@ -43,13 +43,13 @@ const Home = (): JSX.Element => {
         setOffset(offset + currenciesPerPage);
         setCurrencies([...currencies, ...fetchedCurrencies]);
       })
-      .catch(console.error);
+      .catch(() => {});
   }
 
   useEffect(() => {
     fetchCurrencies(offset, currenciesPerPage)
       .then(setCurrencies)
-      .catch(console.error);
+      .catch(() => {});
   }, []);
 
   return (
