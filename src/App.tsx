@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   createHashRouter,
   createRoutesFromElements,
@@ -6,11 +6,9 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import './App.css';
-import { PortfolioContext } from './context/PortfolioContext';
 import CurrencyPage from './pages/currency';
 import Home from './pages/Home';
 import Layout from './pages/layout/Layout';
-import type { IPortfolio } from './types/portfolio';
 
 function App(): JSX.Element {
   const router = createHashRouter(
@@ -21,17 +19,8 @@ function App(): JSX.Element {
       </Route>,
     ),
   );
-  const storagePortfolio = JSON.parse(
-    String(localStorage.getItem('portfolio')),
-  ) ?? { assets: [], totalValue: 0 };
 
-  const [portfolio, setPortfolio] = useState<IPortfolio>(storagePortfolio);
-
-  return (
-    <PortfolioContext.Provider value={{ portfolio, setPortfolio }}>
-      <RouterProvider router={router} />
-    </PortfolioContext.Provider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
