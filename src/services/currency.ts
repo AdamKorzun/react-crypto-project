@@ -19,7 +19,7 @@ export const fetchCurrencies = async (
   return ((await data.json()) as ICurrenciesRequest).data;
 };
 
-export const fetchCrrency = async (id: string): Promise<ICurrency> => {
+export const fetchCurrency = async (id: string): Promise<ICurrency> => {
   const data = await fetch(`${baseUrl}${id}`);
   if (data.status === 404) {
     throw Error('Currency not found');

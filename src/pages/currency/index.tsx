@@ -5,7 +5,7 @@ import PriceChart from '../../components/ui/priceChart/PriceChart';
 import ModalLayout from '../../components/ui/modals/Layout/ModalLayout';
 import AddCurrencyModal from '../../components/ui/modals/addCurrency/AddCurrency';
 import useModal from '../../hooks/useModals';
-import { fetchCrrency, fetchHistoricData } from '../../services/currency';
+import { fetchCurrency, fetchHistoricData } from '../../services/currency';
 import type { ICurrency, ICurrencyTimestamp } from '../../types/currency';
 import { useNavigate, useParams } from 'react-router-dom';
 import { prettifyNumber } from '../../utils/prettifyNumbers';
@@ -19,8 +19,8 @@ const CurrencyPage = (): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (typeof id === 'undefined') return;
-    fetchCrrency(id)
+    if (!id) return;
+    fetchCurrency(id)
       .then(setCurrency)
       .catch(() => {
         navigate('/');
@@ -28,7 +28,7 @@ const CurrencyPage = (): JSX.Element => {
   }, [id]);
 
   useEffect(() => {
-    if (typeof id === 'undefined') return;
+    if (!id) return;
     fetchHistoricData(id)
       .then(setChartData)
       .catch(() => {});

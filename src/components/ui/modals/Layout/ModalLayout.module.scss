@@ -1,4 +1,5 @@
 @import '../../../../styles/colors';
+
 .overlay {
   position: fixed;
   width: 100vw;
@@ -17,7 +18,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: $secondaryPureDecoratins;
+  background: $secondaryPureDecorations;
   padding: 14px 28px;
   border-radius: 10px;
   max-width: 600px;

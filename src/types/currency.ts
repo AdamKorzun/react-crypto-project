@@ -23,7 +23,7 @@ export interface ICurrencyTimestamp {
   time: number;
 }
 
-export interface IHistoricDataReuqest {
+export interface IHistoricDataRequest {
   data: ICurrencyTimestamp[];
   timestamp: number;
 }
