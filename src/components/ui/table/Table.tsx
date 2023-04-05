@@ -57,7 +57,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
       <tbody>
         {props.items.map((row, rowIndex) => (
           <tr
-            className={styles.row}
+            className={styles.tableRow}
             key={rowIndex}
             onClick={() => {
               props.onRowClick(row);
@@ -69,13 +69,21 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
               const key = rowIndex.toString() + index.toString();
               if (typeof customRenderer !== 'undefined') {
                 return (
-                  <td data-label={dataLabel} className={styles.cell} key={key}>
+                  <td
+                    data-label={dataLabel}
+                    className={styles.tableCell}
+                    key={key}
+                  >
                     {customRenderer(row)}
                   </td>
                 );
               }
               return (
-                <td data-label={dataLabel} className={styles.cell} key={key}>
+                <td
+                  data-label={dataLabel}
+                  className={styles.tableCell}
+                  key={key}
+                >
                   {isPrimitive(row[itemProperty])
                     ? prettifyValue(row[itemProperty] as PrimitiveType)
                     : '-'}

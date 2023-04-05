@@ -54,9 +54,9 @@ const CurrencyPage = (): JSX.Element => {
               xAxisLabel={'time'}
             />
           </div>
-          <div className={styles.currencyInfo}>
+          <div className={styles.currency}>
             <div className={styles.currencyDescription}>
-              <span className={styles.name}>
+              <span className={styles.currencyName}>
                 {currency.name} ({currency.symbol})
               </span>
               <span>Rank: {currency.rank}</span>

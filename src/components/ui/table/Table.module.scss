@@ -9,20 +9,20 @@
   box-shadow: 3px 3px 3px $primaryDecorations;
   border-radius: 20px;
   padding: 10px;
-}
 
-.cell {
-  text-align: center;
-  height: 64px;
-  padding: 24px 0;
-  word-wrap: break-word;
-}
+  &Row {
+    transition-duration: 200ms;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
 
-.row {
-  transition-duration: 200ms;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.01);
+  &Cell {
+    text-align: center;
+    height: 64px;
+    padding: 24px 0;
+    word-wrap: break-word;
   }
 }
 
@@ -31,40 +31,40 @@
     background-color: transparent;
     border: none;
     box-shadow: none;
-  }
 
-  .tableHead {
-    display: none;
-  }
-
-  .row {
-    display: block;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 10px 10px 10px $primaryDecorations;
-    margin: 30px 0;
-    background-color: $secondaryPureDecorations;
-    padding: 20px;
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  .cell {
-    display: block;
-    height: 24px;
-    padding: 10px 0;
-    font-size: fontSize(s);
-
-    text-align: right;
-    &::before {
-      content: attr(data-label);
-      float: left;
-      font-weight: fontWeight(bold);
+    &Head {
+      display: none;
     }
 
-    &:last-child::before {
-      content: none;
+    &Row {
+      display: block;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 10px 10px 10px $primaryDecorations;
+      margin: 30px 0;
+      background-color: $secondaryPureDecorations;
+      padding: 20px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &Cell {
+      display: block;
+      height: 24px;
+      padding: 10px 0;
+      font-size: fontSize(s);
+
+      text-align: right;
+      &::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: fontWeight(bold);
+      }
+
+      &:last-child::before {
+        content: none;
+      }
     }
   }
 }

@@ -13,9 +13,9 @@ const PortfolioModal = (props: {
       <table className={styles.table}>
         <thead className={styles.tableHead}>
           <tr>
-            <td className={styles.nameColumn}>Name</td>
-            <td className={styles.amountColumn}>Amount</td>
-            <td className={styles.removeButtonColumn}></td>
+            <td className={styles.tableColumnName}>Name</td>
+            <td className={styles.tableColumnAmount}>Amount</td>
+            <td className={styles.tableColumnRemove}></td>
           </tr>
         </thead>
         <tbody>

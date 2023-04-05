@@ -76,7 +76,7 @@ const Header = (): JSX.Element => {
         })}
       </div>
       <div className={styles.navigationMenu}>
-        <Link to="/" className={styles.homeLink}>
+        <Link to="/" className={styles.iconHome}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 576 512"
@@ -88,7 +88,7 @@ const Header = (): JSX.Element => {
 
         <svg
           onClick={toggle}
-          className={styles.portfolio}
+          className={styles.iconPortfolio}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
           fill="white"

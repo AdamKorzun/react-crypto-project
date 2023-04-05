@@ -10,20 +10,20 @@
   flex-wrap: wrap;
 }
 
-.currencyInfo {
+.currency {
   @include flexContainer(column, left, left, 20px);
-}
 
-.currencyDescription {
-  @include card;
-  @include flexContainer(column, left, left, 10px, 1);
-  padding: 10px;
-  width: 320px;
-}
+  &Description {
+    @include card;
+    @include flexContainer(column, left, left, 10px, 1);
+    padding: 10px;
+    width: 320px;
+  }
 
-.name {
-  font-size: fontSize(l);
-  font-weight: fontWeight(bold);
+  &Name {
+    font-size: fontSize(l);
+    font-weight: fontWeight(bold);
+  }
 }
 
 .chartWrapper {

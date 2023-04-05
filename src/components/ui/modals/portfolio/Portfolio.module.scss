@@ -15,20 +15,19 @@
 
 .table {
   width: 100%;
-}
+  &Head {
+    font-weight: fontWeight(bold);
+  }
 
-.tableHead {
-  font-weight: fontWeight(bold);
-}
+  &columnAmount {
+    text-align: center;
+  }
 
-.amountColumn {
-  text-align: center;
-}
+  &columnName {
+    width: 140px;
+  }
 
-.removeButtonColumn {
-  width: 45px;
-}
-
-.nameColumn {
-  width: 140px;
+  &columnRemove {
+    width: 45px;
+  }
 }
