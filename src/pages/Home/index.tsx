@@ -99,7 +99,7 @@ const Home = (): JSX.Element => {
             ),
           }}
         />
-        <Button text="Load more" onClick={loadMoreCurrencies} width="200px" />
+        <Button text='Load more' onClick={loadMoreCurrencies} width='200px' />
         <ModalLayout isOpen={isOpen} toggle={toggle}>
           <AddCurrencyModal
             currencyName={currentCurrency?.name ?? ''}

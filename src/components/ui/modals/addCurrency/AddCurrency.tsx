@@ -29,20 +29,20 @@ const AddCurrencyModal = (props: {
     <div className={styles.content}>
       <h2>Add {props.currencyName} to your portfolio</h2>
       <form className={styles.inputContainer} onSubmit={handleSubmit}>
-        <label htmlFor="amount">Amount</label>
+        <label htmlFor='amount'>Amount</label>
         <input
-          autoComplete="off"
-          id="amount"
-          name="amount"
+          autoComplete='off'
+          id='amount'
+          name='amount'
           className={styles.input}
-          type="text"
+          type='text'
           onChange={handleInput}
-          placeholder="Amount"
+          placeholder='Amount'
           value={amount}
         />
         <Button
-          text="Add to portfolio"
-          type="submit"
+          text='Add to portfolio'
+          type='submit'
           disabled={!validateForm(amount)}
         />
       </form>

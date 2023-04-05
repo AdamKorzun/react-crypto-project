@@ -13,9 +13,9 @@ import Layout from './pages/layout/Layout';
 function App(): JSX.Element {
   const router = createHashRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
+      <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/currency/:id" element={<CurrencyPage />} />
+        <Route path='/currency/:id' element={<CurrencyPage />} />
       </Route>,
     ),
   );

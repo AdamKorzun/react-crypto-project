@@ -27,7 +27,7 @@ const PriceChart = <T,>(props: {
   }
 
   return (
-    <ResponsiveContainer width="95%" height="95%">
+    <ResponsiveContainer width='95%' height='95%'>
       <LineChart
         width={400}
         height={400}
@@ -39,9 +39,9 @@ const PriceChart = <T,>(props: {
         <Tooltip labelFormatter={getDate} />
         <Legend />
         <Line
-          type="monotone"
+          type='monotone'
           dataKey={String(props.lineLabel)}
-          stroke="#8884d8"
+          stroke='#8884d8'
           activeDot={{ r: 8 }}
         />
       </LineChart>
