@@ -86,6 +86,7 @@ const Home = (): JSX.Element => {
                 onClick={() => {
                   it.button.onClick(it.id);
                 }}
+                width='100%'
               />
             ),
             explorer: (it) => (

@@ -5,10 +5,12 @@
 .button {
   @include main-button;
 
-  width: 100%;
   height: 44px;
   border-radius: 12px;
   font-size: fontSize(m);
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 95%;
 
   &:disabled {
     background-color: $secondaryDecorations;
