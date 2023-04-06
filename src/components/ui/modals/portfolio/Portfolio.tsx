@@ -24,7 +24,7 @@ const PortfolioModal = (props: {
             return (
               <tr key={key}>
                 <td>{props.portfolio[key].currency.name}</td>
-                <td className={styles.amountColumn}>
+                <td className={styles.tableColumnAmount}>
                   {prettifyNumber(props.portfolio[key].amount)}
                 </td>
                 <td>
@@ -33,6 +33,7 @@ const PortfolioModal = (props: {
                       props.onClick(key);
                     }}
                     text='-'
+                    width='100%'
                   />
                 </td>
               </tr>
