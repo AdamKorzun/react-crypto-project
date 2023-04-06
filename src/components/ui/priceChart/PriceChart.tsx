@@ -10,11 +10,15 @@ import {
   YAxis,
 } from 'recharts';
 
-const PriceChart = <T,>(props: {
+interface Props<T> {
   data: T[];
   lineLabel: keyof T;
   xAxisLabel: keyof T;
-}): JSX.Element => {
+  width?: string | number;
+  height?: string | number;
+}
+
+const PriceChart = <T,>(props: Props<T>): JSX.Element => {
   function isValidTimestamp(timestamp: keyof T): boolean {
     const newTimestamp = new Date(Number(timestamp)).getTime();
     return !isNaN(Number(newTimestamp));
@@ -27,10 +31,11 @@ const PriceChart = <T,>(props: {
   }
 
   return (
-    <ResponsiveContainer width='95%' height='95%'>
+    <ResponsiveContainer
+      width={props.width ?? '95%'}
+      height={props.height ?? '95%'}
+    >
       <LineChart
-        width={400}
-        height={400}
         data={props.data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
