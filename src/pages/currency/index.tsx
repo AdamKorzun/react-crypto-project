@@ -10,6 +10,7 @@ import type { ICurrency, ICurrencyTimestamp } from '../../types/currency';
 import { useNavigate, useParams } from 'react-router-dom';
 import { prettifyNumber } from '../../utils/prettifyNumbers';
 import usePortfolio from '../../hooks/usePortfolio';
+
 const CurrencyPage = (): JSX.Element => {
   const [currency, setCurrency] = useState<ICurrency>();
   const [chartData, setChartData] = useState<ICurrencyTimestamp[]>([]);

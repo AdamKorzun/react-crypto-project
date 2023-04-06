@@ -3,6 +3,7 @@ import styles from './Portfolio.module.scss';
 import { Button } from '../../buttons/Buttons';
 import type { IPortfolioAsset } from '../../../../types/portfolio';
 import { prettifyNumber } from '../../../../utils/prettifyNumbers';
+
 const PortfolioModal = (props: {
   portfolio: Record<string, IPortfolioAsset>;
   onClick: (id: string) => void;

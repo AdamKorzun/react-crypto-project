@@ -12,6 +12,7 @@ import {
 import usePortfolio from '../../../hooks/usePortfolio';
 import type { IPortfolio, IPortfolioAsset } from '../../../types/portfolio';
 import { Link } from 'react-router-dom';
+
 const Header = (): JSX.Element => {
   const [currencies, setCurrencies] = useState<ICurrency[]>();
   const { isOpen, toggle } = useModal();

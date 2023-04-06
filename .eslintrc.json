@@ -17,7 +17,8 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "@typescript-eslint/strict-boolean-expressions": "warn"
+    "@typescript-eslint/strict-boolean-expressions": "warn",
+    "import/newline-after-import": ["error", { "count": 1 }]
   },
   "settings": {
     "react": {

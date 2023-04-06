@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../../buttons/Buttons';
 import styles from './AddCurrency.module.scss';
+
 const AddCurrencyModal = (props: {
   currencyName: string;
   handleClose: (amount: number) => void;

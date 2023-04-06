@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import type { ICurrency } from '../../types/currency';
 import { fetchCurrencies } from '../../services/currency';
 import usePortfolio from '../../hooks/usePortfolio';
+
 const Home = (): JSX.Element => {
   const { isOpen, toggle } = useModal();
   const navigate = useNavigate();
