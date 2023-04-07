@@ -4,7 +4,8 @@
 
 .button {
   @include main-button;
-
+  @include flexContainer(row, center, center, 10px);
+  padding: 0 15px;
   height: 44px;
   border-radius: 12px;
   font-size: fontSize(m);

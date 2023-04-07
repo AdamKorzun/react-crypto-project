@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Buttons.module.scss';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Props {
   onClick?: () => void;
@@ -11,6 +13,7 @@ interface Props {
   height?: string;
   disabled?: boolean;
   tooltipText?: string;
+  icon?: IconProp;
 }
 
 export const Button = (props: Props): JSX.Element => {
@@ -35,7 +38,12 @@ export const Button = (props: Props): JSX.Element => {
         type={props.type}
         disabled={props.disabled}
       >
-        {props.text}
+        {props.icon && (
+          <span>
+            <FontAwesomeIcon icon={props.icon} />{' '}
+          </span>
+        )}
+        <span>{props.text}</span>
       </button>
     </Tippy>
   );

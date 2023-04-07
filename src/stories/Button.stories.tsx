@@ -1,5 +1,6 @@
 import { Button } from '../components/ui/buttons/Buttons';
 import type { Meta, StoryObj } from '@storybook/react';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -26,9 +27,16 @@ export const DisabledButton: Story = {
   },
 };
 
-export const ToolTipButton: Story = {
+export const HoverText: Story = {
   args: {
     text: 'Button',
     tooltipText: 'Tooltip Text',
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    text: 'Button',
+    icon: faMagnifyingGlass,
   },
 };
