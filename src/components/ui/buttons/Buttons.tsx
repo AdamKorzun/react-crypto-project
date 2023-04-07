@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Buttons.module.scss';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 interface Props {
   onClick?: () => void;
@@ -8,6 +10,7 @@ interface Props {
   width?: string;
   height?: string;
   disabled?: boolean;
+  tooltipText?: string;
 }
 
 export const Button = (props: Props): JSX.Element => {
@@ -17,17 +20,23 @@ export const Button = (props: Props): JSX.Element => {
   }
 
   return (
-    <button
-      className={styles.button}
-      onClick={handleClick}
-      style={{
-        height: props.height,
-        width: props.width,
-      }}
-      type={props.type}
-      disabled={props.disabled}
+    <Tippy
+      content={props.tooltipText}
+      delay={100}
+      visible={Boolean(props.tooltipText)}
     >
-      {props.text}
-    </button>
+      <button
+        className={styles.button}
+        onClick={handleClick}
+        style={{
+          height: props.height,
+          width: props.width,
+        }}
+        type={props.type}
+        disabled={props.disabled}
+      >
+        {props.text}
+      </button>
+    </Tippy>
   );
 };

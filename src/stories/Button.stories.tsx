@@ -18,3 +18,17 @@ export const MainButton: Story = {
     text: 'Button',
   },
 };
+
+export const DisabledButton: Story = {
+  args: {
+    text: 'Button',
+    disabled: true,
+  },
+};
+
+export const ToolTipButton: Story = {
+  args: {
+    text: 'Button',
+    tooltipText: 'Tooltip Text',
+  },
+};
