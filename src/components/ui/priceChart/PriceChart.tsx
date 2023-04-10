@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import getDate from '../../../utils/getDateFromTimestamp';
 
 interface Props<T> {
   data: T[];
@@ -19,17 +20,6 @@ interface Props<T> {
 }
 
 const PriceChart = <T,>(props: Props<T>): JSX.Element => {
-  function isValidTimestamp(timestamp: keyof T): boolean {
-    const newTimestamp = new Date(Number(timestamp)).getTime();
-    return !isNaN(Number(newTimestamp));
-  }
-
-  function getDate(label: string): string {
-    return isValidTimestamp(label as keyof T)
-      ? new Date(label).toLocaleDateString()
-      : label;
-  }
-
   return (
     <ResponsiveContainer
       width={props.width ?? '95%'}
