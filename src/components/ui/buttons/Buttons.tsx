@@ -26,7 +26,7 @@ export const Button = (props: Props): JSX.Element => {
     <Tippy
       content={props.tooltipText}
       delay={100}
-      visible={Boolean(props.tooltipText)}
+      disabled={!props.tooltipText}
     >
       <button
         className={styles.button}
