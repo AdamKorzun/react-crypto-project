@@ -2,7 +2,6 @@ export function prettifyNumber(
   num: number | string | null,
   maxLength = 6,
 ): string {
-  if (isNaN(num as number)) return '';
   if (isNaN(Number(num))) return String(num);
   num = Number(num);
 
@@ -19,15 +18,14 @@ export function prettifyNumber(
     { key: 'K', value: 1000 },
   ];
 
-  for (let i = 0; i < powers.length; i++) {
-    let reduced = abs / powers[i].value;
+  powers.forEach((power) => {
+    let reduced = abs / power.value;
     reduced = Math.round(reduced * rounder) / rounder;
     if (reduced >= 1) {
       abs = reduced;
-      key = powers[i].key;
-      break;
+      key = power.key;
     }
-  }
+  });
 
   return (isNegative ? '-' : '') + abs.toString().slice(0, maxLength) + key;
 }
