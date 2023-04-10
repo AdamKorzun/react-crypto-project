@@ -61,15 +61,7 @@ describe('Table', () => {
     const customRenderers = {
       button: (item: {
         button: {
-          text:
-            | string
-            | number
-            | boolean
-            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-            | React.ReactFragment
-            | React.ReactPortal
-            | null
-            | undefined;
+          text: string;
         };
       }) => (
         <button>
