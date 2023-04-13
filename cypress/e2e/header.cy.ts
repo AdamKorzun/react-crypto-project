@@ -32,4 +32,8 @@ describe('Header', () => {
     cy.get('button').contains('Add to portfolio').first().click();
     cy.get('[data-testid="portfolio-value"]').should('have.text', '3M');
   });
+
+  it('should match the snapshot', () => {
+    cy.get('header').matchImageSnapshot();
+  });
 });

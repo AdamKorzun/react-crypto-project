@@ -1,4 +1,4 @@
-describe('Home Page', () => {
+describe('Currency Page', () => {
   beforeEach(() => {
     cy.intercept('GET', '/v2/assets/bitcoin', {
       fixture: 'bitcoin.json',
@@ -33,5 +33,9 @@ describe('Home Page', () => {
         // Find the cell containing the currency amount using the data-testid attribute
         cy.get('[data-testid="currency-amount"]').should('have.text', '100');
       });
+  });
+
+  it('should match the snapshot', () => {
+    cy.matchImageSnapshot();
   });
 });

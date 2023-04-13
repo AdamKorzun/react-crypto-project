@@ -1,10 +1,18 @@
 describe('Home Page', () => {
   beforeEach(() => {
+    cy.intercept('GET', '/v2/assets/?limit=3&offset=*', {
+      fixture: 'topCurrencies.json',
+    }).as('fetchTopCurrencies');
     cy.intercept('GET', '/v2/assets/?limit=15&offset=*', {
       fixture: 'currencies.json',
     }).as('fetchCurrencies');
+    cy.intercept('GET', '/v2/assets/?ids=*', {
+      fixture: 'currencies.json',
+    }).as('addedCurrencies');
     cy.visit('/');
+    cy.wait('@fetchTopCurrencies');
     cy.wait('@fetchCurrencies');
+    cy.wait('@addedCurrencies');
   });
 
   it('should display a table with currency data', () => {
@@ -48,5 +56,9 @@ describe('Home Page', () => {
     cy.get('table tbody tr').should('have.length', 15);
     cy.contains('Load more').click();
     cy.get('table tbody tr').should('have.length', 30);
+  });
+
+  it('should match the snapshot', () => {
+    cy.matchImageSnapshot();
   });
 });
