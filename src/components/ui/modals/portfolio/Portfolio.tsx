@@ -22,7 +22,7 @@ const PortfolioModal = (props: {
         <tbody>
           {Object.keys(props.portfolio).map((key): JSX.Element => {
             return (
-              <tr key={key}>
+              <tr key={key} data-testid='portfolio-row'>
                 <td>{props.portfolio[key].currency.name}</td>
                 <td
                   className={styles.tableColumnAmount}

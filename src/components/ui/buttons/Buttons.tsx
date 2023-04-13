@@ -14,6 +14,7 @@ interface Props {
   disabled?: boolean;
   tooltipText?: string;
   icon?: IconProp;
+  testId?: string;
 }
 
 export const Button = (props: Props): JSX.Element => {
@@ -37,6 +38,7 @@ export const Button = (props: Props): JSX.Element => {
         }}
         type={props.type}
         disabled={props.disabled}
+        data-testid={props.testId}
       >
         {props.icon && (
           <span>

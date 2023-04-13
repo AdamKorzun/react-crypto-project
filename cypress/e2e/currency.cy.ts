@@ -18,17 +18,15 @@ describe('Currency Page', () => {
   });
 
   it('should add a currency to the portfolio when the modal form is submitted', () => {
-    cy.get('button').contains('Add').first().click();
+    cy.get('[data-testid="add-currency-button"]').click();
 
-    cy.get('input').type('100');
-    cy.get('[data-testid="overlay"]')
-      .contains('Add to portfolio')
-      .click({ force: true });
+    cy.get('[data-testid="amount-input"]').type('100');
+    cy.get('[data-testid="submit-form-button"]').click({ force: true });
     // Verify that the currency was added to the portfolio
     cy.get('[data-testid="portfolio-icon"]').click();
-    cy.get('tr')
+    cy.get('[data-testid="portfolio-row"]')
       .contains('Bitcoin')
-      .parent('tr')
+      .parent('[data-testid="portfolio-row"]')
       .within(() => {
         // Find the cell containing the currency amount using the data-testid attribute
         cy.get('[data-testid="currency-amount"]').should('have.text', '100');

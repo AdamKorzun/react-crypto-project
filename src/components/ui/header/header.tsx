@@ -65,7 +65,7 @@ const Header = (): JSX.Element => {
   }
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-testid='header'>
       <div className={styles.topCurrencies} data-testid='top-currencies'>
         {currencies?.map((currency) => {
           return (

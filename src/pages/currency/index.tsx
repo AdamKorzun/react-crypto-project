@@ -72,7 +72,11 @@ const CurrencyPage = (): JSX.Element => {
                 Change (24hr): {prettifyNumber(currency.changePercent24Hr)}
               </span>
             </div>
-            <Button text='Add to portfolio' onClick={toggle} />
+            <Button
+              text='Add to portfolio'
+              onClick={toggle}
+              testId='add-currency-button'
+            />
             <ModalLayout isOpen={isOpen} toggle={toggle}>
               <AddCurrencyModal
                 currencyName={currency.name}

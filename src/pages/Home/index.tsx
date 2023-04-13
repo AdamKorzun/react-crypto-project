@@ -87,6 +87,7 @@ const Home = (): JSX.Element => {
                   it.button.onClick(it.id);
                 }}
                 width='100%'
+                testId='add-currency-button'
               />
             ),
             explorer: (it) => (
@@ -101,7 +102,12 @@ const Home = (): JSX.Element => {
             ),
           }}
         />
-        <Button text='Load more' onClick={loadMoreCurrencies} width='200px' />
+        <Button
+          text='Load more'
+          onClick={loadMoreCurrencies}
+          width='200px'
+          testId='load-more-button'
+        />
         <ModalLayout isOpen={isOpen} toggle={toggle}>
           <AddCurrencyModal
             currencyName={currentCurrency?.name ?? ''}

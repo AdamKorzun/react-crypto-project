@@ -46,7 +46,7 @@ function prettifyValue(input: PrimitiveType): string {
 
 const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
   return (
-    <table className={styles.table}>
+    <table className={styles.table} data-testid='table'>
       <thead className={styles.tableHead}>
         <tr>
           {getObjectValues(props.headers).map((headerValue) => (
@@ -54,7 +54,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody data-testid='table-body'>
         {props.items.map((row, rowIndex) => (
           <tr
             className={styles.tableRow}
@@ -62,6 +62,7 @@ const Table = <T extends MinTableItem>(props: TableProps<T>): JSX.Element => {
             onClick={() => {
               props.onRowClick(row);
             }}
+            data-testid='table-row'
           >
             {getObjectKeys(props.headers).map((itemProperty, index) => {
               const customRenderer = props.customRenderers?.[itemProperty];

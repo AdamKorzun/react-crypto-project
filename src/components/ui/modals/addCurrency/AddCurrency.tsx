@@ -40,11 +40,13 @@ const AddCurrencyModal = (props: {
           onChange={handleInput}
           placeholder='Amount'
           value={amount}
+          data-testid='amount-input'
         />
         <Button
           text='Add to portfolio'
           type='submit'
           disabled={!validateForm(amount)}
+          testId='submit-form-button'
         />
       </form>
     </div>

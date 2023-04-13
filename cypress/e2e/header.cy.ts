@@ -27,13 +27,13 @@ describe('Header', () => {
   });
 
   it('should add a currency to the portfolio when the modal form is submitted', () => {
-    cy.get('button').contains('Add').first().click();
-    cy.get('input').type('100');
-    cy.get('button').contains('Add to portfolio').first().click();
+    cy.get('[data-testid="add-currency-button"]').first().click();
+    cy.get('[data-testid="amount-input"]').type('100');
+    cy.get('[data-testid="submit-form-button"]').first().click();
     cy.get('[data-testid="portfolio-value"]').should('have.text', '3M');
   });
 
   it('should match the snapshot', () => {
-    cy.get('header').matchImageSnapshot();
+    cy.get('[data-testid="header"]').matchImageSnapshot();
   });
 });
