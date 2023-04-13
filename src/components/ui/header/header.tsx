@@ -114,9 +114,11 @@ const Header = (): JSX.Element => {
         </span>
         <span>
           Change: {prettifyNumber(portfolioValue - portfolio.totalValue)} (
-          {prettifyNumber(
-            (portfolioValue - portfolio.totalValue) / portfolioValue,
-          ) ?? 0}
+          {(portfolioValue - portfolio.totalValue) / portfolioValue
+            ? prettifyNumber(
+                (portfolioValue - portfolio.totalValue) / portfolioValue,
+              )
+            : 0}
           %)
         </span>
       </div>
