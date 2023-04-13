@@ -24,7 +24,10 @@ const PortfolioModal = (props: {
             return (
               <tr key={key}>
                 <td>{props.portfolio[key].currency.name}</td>
-                <td className={styles.tableColumnAmount}>
+                <td
+                  className={styles.tableColumnAmount}
+                  data-testid='currency-amount'
+                >
                   {prettifyNumber(props.portfolio[key].amount)}
                 </td>
                 <td>
